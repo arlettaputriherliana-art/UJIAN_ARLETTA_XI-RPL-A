@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sistem Peminjaman Alat Praktik</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-100 text-slate-800">
+
+    <!-- HEADER -->
+    <header class="bg-blue-900 text-white p-6">
+        <div class="max-w-6xl mx-auto">
+            <h1 class="text-2xl font-bold">
+                Sistem Peminjaman Alat Praktik
+            </h1>
+
+            <p class="text-blue-200">
+                Sistem Informasi Peminjaman Alat Sekolah
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto p-6">
+
+        <!-- FORM PEMINJAMAN -->
+        <section class="bg-white rounded-xl shadow p-6 mb-8">
+
+            <h2 class="text-2xl font-bold">
+                Formulir Peminjaman Alat
+            </h2>
+
+            <p class="text-slate-500 mb-5">
+                Silakan lengkapi data peminjaman.
+            </p>
+
+            <form id="form-peminjaman">
+
+                <div class="grid md:grid-cols-2 gap-4">
+
+                    <div>
+                        <label>Nama Peminjam</label>
+
+                        <input
+                            id="peminjam"
+                            type="text"
+                            placeholder="Masukkan nama peminjam"
+                            required
+                            class="input">
+                    </div>
+
+                    <div>
+                        <label>Kelas</label>
+
+                        <input
+                            id="kelas"
+                            type="text"
+                            placeholder="Contoh: XI RPL A"
+                            required
+                            class="input">
+                    </div>
+
+                    <div>
+                        <label>Lokasi Peminjam</label>
+
+                        <input
+                            id="lokasi-peminjam"
+                            type="text"
+                            placeholder="Contoh: Laboratorium RPL"
+                            required
+                            class="input">
+                    </div>
+
+                    <div>
+                        <label>Lokasi Penyimpanan</label>
+
+                        <input
+                            id="lokasi-penyimpanan"
+                            type="text"
+                            placeholder="Contoh: Lemari Alat RPL"
+                            required
+                            class="input">
+                    </div>
+
+                    <div>
+                        <label>Pilih Alat</label>
+
+                        <select id="alat-select" required class="input">
+                            <option value="">-- Pilih Alat --</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label>Jumlah</label>
+
+                        <input
+                            id="jumlah"
+                            type="number"
+                            min="1"
+                            value="1"
+                            required
+                            class="input">
+                    </div>
+
+                    <div>
+                        <label>Tanggal Pinjam</label>
+
+                        <input
+                            id="tanggal-pinjam"
+                            type="date"
+                            required
+                            class="input">
+                    </div>
+
+                    <div>
+                        <label>Tanggal Pengembalian</label>
+
+                        <input
+                            id="tanggal-kembali"
+                            type="date"
+                            required
+                            class="input">
+                    </div>
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="mt-5 bg-blue-700 hover:bg-blue-800 text-white font-semibold px-8 py-3 rounded-xl">
+
+                    Pinjam Alat
+
+                </button>
+
+                <p
+                    id="notifikasi"
+                    class="mt-4 text-center font-medium">
+                </p>
+
+            </form>
+
+        </section>
+
+        <!-- DAFTAR ALAT -->
+        <section class="mb-8">
+
+            <h2 class="text-2xl font-bold">
+                Daftar Alat Praktik
+            </h2>
+
+            <p class="text-slate-500 mb-4">
+                Informasi alat yang tersedia.
+            </p>
+
+            <div class="bg-white rounded-xl shadow overflow-x-auto">
+
+                <table class="w-full text-left">
+
+                    <thead class="bg-blue-900 text-white">
+
+                        <tr>
+                            <th class="p-3">ID</th>
+                            <th class="p-3">Nama Alat</th>
+                            <th class="p-3">Kategori</th>
+                            <th class="p-3">Kondisi</th>
+                            <th class="p-3">Stok</th>
+                            <th class="p-3">Lokasi</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="alat-container"></tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+        <!-- DAFTAR PEMINJAMAN -->
+        <section>
+
+            <h2 class="text-2xl font-bold">
+                Daftar Peminjaman
+            </h2>
+
+            <p class="text-slate-500 mb-4">
+                Data peminjaman dan pengembalian alat praktik.
+            </p>
+
+            <div class="bg-white rounded-xl shadow overflow-x-auto">
+
+                <table class="w-full text-left">
+
+                    <thead class="bg-blue-900 text-white">
+
+                        <tr>
+                            <th class="p-3">ID</th>
+                            <th class="p-3">Nama Peminjam</th>
+                            <th class="p-3">Kelas</th>
+                            <th class="p-3">Alat</th>
+                            <th class="p-3">Jumlah</th>
+                            <th class="p-3">Tgl Pinjam</th>
+                            <th class="p-3">Tgl Kembali</th>
+                            <th class="p-3">Status</th>
+                            <th class="p-3">Aksi</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="peminjaman-container"></tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-blue-900 text-blue-200 text-center p-5 mt-10">
+
+        <p>© 2026 Sistem Peminjaman Alat Praktik</p>
+
+        <p>Sistem Informasi Peminjaman Alat Sekolah</p>
+
+    </footer>
+
+    <!-- CSS -->
+    <style>
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            outline: none;
+        }
+
+        .input:focus {
+            border-color: #3b82f6;
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    </style>
+
+    <!-- JAVASCRIPT -->
+    <script src="js/app.js"></script>
+
+</body>
+</html>
